@@ -1,6 +1,7 @@
 import Image from 'next/image'
 
 export default function Home() {
+  const name = process.env.NEXT_PUBLIC_TEST_NAME
   return (
     <main className=" p-2 bg-[#1b3664]">
       {/* <Image src="/images/Icon00.png" width={200} height={200} alt="Boehringer Ingelheim logo" /> */}
@@ -8,7 +9,7 @@ export default function Home() {
         <div className='min-h-fit min-w-full p-24 flex items-center justify-center'>
           <div className=''>
             <input className='bg-transparent text-white text-xl rounded-md mx-2' type='text' placeholder='Enter your name' />
-            <button className='bg-transparent text-white text-xl rounded-md border-2 my-2 p-1 mx-2' type='button'>Start</button>
+            <button className='bg-transparent text-white text-xl rounded-md border-2 my-2 p-1 mx-2' type='button'>Start . {name}</button>
           </div>
         </div>
       </div>
