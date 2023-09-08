@@ -20,46 +20,55 @@ const Game: React.FC = () => {
   } = useGameLogic()
 
   return (
-    <div>
-      {!startGame && (
-        <KardForm
-          theme={theme}
-          setTheme={setTheme}
-          handleGenerateKards={handleGenerateKards}
-        />
-      )}
+    <div className='flex flex-1 flex-col'>
+      <div style={styles} className={`${styles.bgTop} flex-1`}>
 
-      {startGame && (
-        <>
-          {/* <h2 className='text-xl font-bold text-center text-gray-900'>
+      </div>
+      <div className='flex flex-col flex-1'>
+        {!startGame && (
+          <KardForm
+            theme={theme}
+            setTheme={setTheme}
+            handleGenerateKards={handleGenerateKards}
+          />
+        )}
+
+        {startGame && (
+          <>
+            {/* <h2 className='text-xl font-bold text-center text-gray-900'>
             Tema: <strong>{theme}</strong>
           </h2> */}
 
-          {!win && (
-            <h2 className='text-xl  text-center text-gray-200 pb-6'>
-              Moviments: <strong>{attempts}</strong>
-            </h2>
-          )}
+            {!win && (
+              <h2 className='text-xl  text-center text-gray-200 pb-6'>
+                Moviments: <strong>{attempts}</strong>
+              </h2>
+            )}
 
-          <ListKards
-            cards={kards}
-            attempts={attempts}
-            setAttempts={setAttempts}
-            win={win}
-            setWin={setWin}
-          />
+            <ListKards
+              cards={kards}
+              attempts={attempts}
+              setAttempts={setAttempts}
+              win={win}
+              setWin={setWin}
+            />
 
-          {win && (
-            <h2 className='text-xl font-bold text-center text-gray-200 mt-6'>
-              You win with <strong>{attempts}</strong> moviments!
-            </h2>
-          )}
+            {win && (
+              <h2 className='text-xl font-bold text-center text-gray-200 mt-6'>
+                You win with <strong>{attempts}</strong> moviments!
+              </h2>
+            )}
 
-          <button className='px-4 py-2 mt-4 text-white uppercase bg-red-500 rounded hover:bg-red-700'>
-            <a href='/'>Play again</a>
-          </button>
-        </>
-      )}
+            <button className='px-4 py-2 mt-4 text-white uppercase bg-red-500 rounded hover:bg-red-700'>
+              <a href='/'>Play again</a>
+            </button>
+          </>
+        )}
+      </div>
+      <div className={`${styles.bgFooter} flex-1`}>
+
+      </div>
+
     </div>
   )
 }
