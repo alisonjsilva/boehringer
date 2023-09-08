@@ -17,6 +17,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <link rel="preload" as="image" href="/icons/01.png" />
+      <link rel="preload" as="image" href="/icons/02.png" />
+      <link rel="preload" as="image" href="/icons/03.png" />
+      <link rel="preload" as="image" href="/icons/04.png" />
+      <link rel="preload" as="image" href="/icons/05.png" />
+      <link rel="preload" as="image" href="/icons/06.png" />
+      <link rel="preload" as="image" href="/icons/07.png" />
+      <link rel="preload" as="image" href="/icons/08.png" />
+      
       <body className={inter.className}>{children}</body>
     </html>
   )

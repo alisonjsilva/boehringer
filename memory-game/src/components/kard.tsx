@@ -22,6 +22,13 @@ const Kard: React.FC<Props> = ({ card, handleFlip }) => {
         fill={true}
         style={{ "objectFit": "contain" }}
       />
+      <Image
+        src={card.image as string}
+        alt='Picture of the author'
+        className='rounded-full hidden'
+        fill={true}
+        style={{ "objectFit": "contain" }}
+      />
       {/* <Image
         src={card.flipped ? card.image ?? card.defaultImage : card.defaultImage}
         alt='Picture of the author'
