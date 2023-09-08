@@ -55,7 +55,7 @@ const Game: React.FC = () => {
 
             {win && (
               <h2 className='text-xl font-bold text-center text-gray-200 mt-6'>
-                You win with <strong>{attempts}</strong> moviments!
+                You won in <strong>{attempts}</strong> moves!
               </h2>
             )}
 
