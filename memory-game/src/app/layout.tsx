@@ -5,8 +5,8 @@ import { Inter } from 'next/font/google'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Kemory Game',
-  description: 'The classic Memory game, but in a new fun way!',
+  title: 'Boehringer Ingelheim Pairs Game',
+  description: 'Boehringer Ingelheim Memory Pair Game',
   viewport: 'width=device-width,user-scalable=no'
 }
 

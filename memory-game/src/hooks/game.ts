@@ -13,7 +13,7 @@ export const useGameLogic = () => {
     e.preventDefault()
 
     const query = theme
-    const numColumns = process.env.NEXT_PUBLIC_CARDS_NUM_COLUMNS as unknown as number
+    const numColumns = 4 // process.env.NEXT_PUBLIC_CARDS_NUM_COLUMNS as unknown as number
     const totalCards = Math.pow(numColumns, 2)
     const totalImages = totalCards / 2
 

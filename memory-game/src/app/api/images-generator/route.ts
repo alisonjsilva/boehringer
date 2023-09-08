@@ -21,15 +21,26 @@ export async function POST( request: Request ): Promise<NextResponse<string[]>> 
 
   // const randomResults = shuffleArray(allResults).slice(0, num)
 
+  // const randomResults = [
+  //   'https://cdn-images.farfetch-contents.com/14/57/19/42/14571942_23871757_600.jpg',
+  //   'https://news.va.gov/wp-content/uploads/sites/3/2023/01/Steve_McQueen_VOD_FB.jpg?w=1200',
+  //   'https://upload.wikimedia.org/wikipedia/commons/3/3e/Steve-McQueen-1968_%28cropped%29.jpg',
+  //   'https://cdn-images.farfetch-contents.com/13/16/43/54/13164354_30455537_600.jpg',
+  //   'https://cdn-images.farfetch-contents.com/14/57/19/42/14571942_23871744_600.jpg',
+  //   'https://downtownreno.org/wp-content/uploads/2022/04/Lightning-McQueen-Front-1-scaled.jpg',
+  //   'https://www.crepslocker.com/cdn/shop/products/Alexander-Mcqueen-Raised-Sole-Black-Velvet-Trainers-Back.jpg?v=1656343605',
+  //   'https://amq-mcq.dam.kering.com/m/1d367a07c0f6c2b8/Medium-553680WHGP59000_F.jpg?v=8'
+  // ]
+
   const randomResults = [
-    'https://cdn-images.farfetch-contents.com/14/57/19/42/14571942_23871757_600.jpg',
-    'https://news.va.gov/wp-content/uploads/sites/3/2023/01/Steve_McQueen_VOD_FB.jpg?w=1200',
-    'https://upload.wikimedia.org/wikipedia/commons/3/3e/Steve-McQueen-1968_%28cropped%29.jpg',
-    'https://cdn-images.farfetch-contents.com/13/16/43/54/13164354_30455537_600.jpg',
-    'https://cdn-images.farfetch-contents.com/14/57/19/42/14571942_23871744_600.jpg',
-    'https://downtownreno.org/wp-content/uploads/2022/04/Lightning-McQueen-Front-1-scaled.jpg',
-    'https://www.crepslocker.com/cdn/shop/products/Alexander-Mcqueen-Raised-Sole-Black-Velvet-Trainers-Back.jpg?v=1656343605',
-    'https://amq-mcq.dam.kering.com/m/1d367a07c0f6c2b8/Medium-553680WHGP59000_F.jpg?v=8'
+    '/icons/01.png',
+    '/icons/02.png',
+    '/icons/03.png',
+    '/icons/04.png',
+    '/icons/05.png',
+    '/icons/06.png',
+    '/icons/07.png',
+    '/icons/08.png',
   ]
 
   console.log(randomResults)
