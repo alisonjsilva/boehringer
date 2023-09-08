@@ -4,6 +4,7 @@ import React from 'react'
 import ListKards from './list-kards'
 import KardForm from './kard-form'
 import { useGameLogic } from '@/hooks/game'
+import styles from './game.module.scss'
 
 const Game: React.FC = () => {
   const {
@@ -19,7 +20,7 @@ const Game: React.FC = () => {
   } = useGameLogic()
 
   return (
-    <>
+    <div>
       {!startGame && (
         <KardForm
           theme={theme}
@@ -35,7 +36,7 @@ const Game: React.FC = () => {
           </h2> */}
 
           {!win && (
-            <h2 className='text-xl font-bold text-center text-gray-900'>
+            <h2 className='text-xl  text-center text-gray-200 pb-6'>
               Moviments: <strong>{attempts}</strong>
             </h2>
           )}
@@ -49,7 +50,7 @@ const Game: React.FC = () => {
           />
 
           {win && (
-            <h2 className='text-xl font-bold text-center text-gray-900'>
+            <h2 className='text-xl font-bold text-center text-gray-200 mt-6'>
               You win with <strong>{attempts}</strong> moviments!
             </h2>
           )}
@@ -59,7 +60,7 @@ const Game: React.FC = () => {
           </button>
         </>
       )}
-    </>
+    </div>
   )
 }
 

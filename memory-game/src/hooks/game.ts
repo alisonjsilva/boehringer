@@ -21,7 +21,7 @@ export const useGameLogic = () => {
       id: i,
       flipped: false,
       matched: false,
-      defaultImage: '/bg-card.jpg',
+      defaultImage: '/bg-card.svg',
     }))
 
     async function generateCards() {

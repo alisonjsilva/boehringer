@@ -100,7 +100,7 @@ const ListKards: React.FC<Props> = ({
   }, [cardsClicked])
 
   return (
-    <div className='grid grid-cols-4 justify-center w-full gap-2'>
+    <div className='grid grid-cols-4 justify-center w-full gap-6'>
       {cards.map((card) => (
         <Kard key={card.id} card={card} handleFlip={flipCard} />
       ))}

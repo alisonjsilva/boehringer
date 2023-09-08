@@ -13,12 +13,12 @@ const Kard: React.FC<Props> = ({ card, handleFlip }) => {
   }
 
   return (
-    <Card key={card.id} className='w-[100px] h-[100px] rounded-full' onClick={handleClick}>
+    <Card key={card.id} className='w-[170px] h-[170px] rounded-full' onClick={handleClick}>
       <Image
         src={card.flipped ? card.image ?? card.defaultImage : card.defaultImage}
         alt='Picture of the author'
-        width={100}
-        height={100}
+        width={170}
+        height={170}
         className='object-fill h-full rounded-full'
       />
       {/* <img
