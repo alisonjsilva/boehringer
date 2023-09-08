@@ -22,7 +22,7 @@ const KardForm: React.FC<Props> = ({ theme, setTheme, handleGenerateKards }) => 
           className='w-full px-4 py-3 text-center placeholder-gray-400 border border-gray-300 rounded-lg focus:outline-none focus:ring-indigo-500 focus:border-indigo-500'
           placeholder='Ingrese tema: Ej. "auto ferrari"'
         /> */}
-        <input
+        {/* <input
           type='text'
           required={true}
           className='w-full px-4 py-3 mb-6 text-center placeholder-gray-400 border border-gray-300 rounded-lg focus:outline-none focus:ring-indigo-500 focus:border-indigo-500'
@@ -33,7 +33,7 @@ const KardForm: React.FC<Props> = ({ theme, setTheme, handleGenerateKards }) => 
           required={true}
           className='w-full px-4 py-3 text-center placeholder-gray-400 border border-gray-300 rounded-lg focus:outline-none focus:ring-indigo-500 focus:border-indigo-500'
           placeholder='Email'
-        />
+        /> */}
         <button
           type='submit'
           className='w-full block px-4 py-2 mx-auto mt-4 text-[#1a3664] uppercase bg-gray-300 rounded-lg hover:bg-gray-400'

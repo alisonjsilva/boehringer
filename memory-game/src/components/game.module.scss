@@ -1,3 +1,17 @@
 .bg {
     background-color: aquamarine;
 }
+
+.bgTop {
+    background-image: url("/Fundo-01-top.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position-x: center;
+}
+
+.bgFooter {
+    background-image: url("/Fundo-01-footer.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position-x: center;
+}
