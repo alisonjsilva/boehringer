@@ -26,13 +26,22 @@ const KardForm: React.FC<Props> = ({ theme, setTheme, handleGenerateKards }) => 
           type='text'
           required={true}
           className='w-full px-4 py-3 mb-6 text-center placeholder-gray-400 border border-gray-300 rounded-lg focus:outline-none focus:ring-indigo-500 focus:border-indigo-500'
-          placeholder='Name'
+          placeholder='Nickname'
+          name='nickname'
+        />
+        <input
+          type='text'
+          required={true}
+          className='w-full px-4 py-3 mb-6 text-center placeholder-gray-400 border border-gray-300 rounded-lg focus:outline-none focus:ring-indigo-500 focus:border-indigo-500'
+          placeholder='Mobile phone number'
+          name='phone'
         />
         <input
           type='email'
           required={true}
           className='w-full px-4 py-3 text-center placeholder-gray-400 border border-gray-300 rounded-lg focus:outline-none focus:ring-indigo-500 focus:border-indigo-500'
           placeholder='Email'
+          name='email'
         />
         <button
           type='submit'
@@ -40,6 +49,12 @@ const KardForm: React.FC<Props> = ({ theme, setTheme, handleGenerateKards }) => 
         >
           Start Game
         </button>
+
+        <p className='text-sm text-gray-400 pt-4'>
+          Availability and licensing may vary by country. Please refer to Global and National
+          Competent Authority websites for further information. All veterinary medicinal products
+          referenced on this booth are authorized in at least one country.
+        </p>
       </div>
     </form>
   )

@@ -12,16 +12,29 @@ const Kard: React.FC<Props> = ({ card, handleFlip }) => {
     handleFlip(card.id, card.matched)
   }
 
+  // {card.flipped ? card.image ?? card.defaultImage : card.defaultImage}
   return (
-    <Card key={card.id} className=' py-3 relative bg-[#1a3664] border-0' onClick={handleClick}>
-    
-      <Image
-        src={card.flipped ? card.image ?? card.defaultImage : card.defaultImage}
-        alt='Picture of the author'
-        className='rounded-full'
-        fill={true}
-        style={{ "objectFit": "contain" }}
-      />
+    <Card key={card.id} className={`py-3 relative bg-[#1a3664] border-0 ${card.flipped ? "transition-all duration-500 [transform-style:preserve-3d] [transform:rotateY(360deg)]" ?? card.defaultImage : ""}`} onClick={handleClick}>
+
+      {card.flipped ? (
+        <Image
+          src={card.image as string}
+          alt='Picture of the author'
+          // className='rounded-full [transform:rotateY(180deg)] [backface-visibility:hidden]'
+          className='rounded-full'
+          fill={true}
+          style={{ "objectFit": "contain" }}
+        />) : (
+        <Image
+          src={card.defaultImage}
+          alt='Picture of the author'
+          className={`rounded-full  `}
+          fill={true}
+          style={{ "objectFit": "contain" }}
+        />
+      )
+      }
+
       <Image
         src={card.image as string}
         alt='Picture of the author'
@@ -29,20 +42,15 @@ const Kard: React.FC<Props> = ({ card, handleFlip }) => {
         fill={true}
         style={{ "objectFit": "contain" }}
       />
+
       {/* <Image
         src={card.flipped ? card.image ?? card.defaultImage : card.defaultImage}
         alt='Picture of the author'
-        width={170}
-        height={170}
-        className='object-fill h-full rounded-full'
+        className={`rounded-full  `}
+        fill={true}
+        style={{ "objectFit": "contain" }}
       /> */}
-      {/* <img
-        src={card.flipped ? card.image ?? card.defaultImage : card.defaultImage}
-        alt='Picture of the author'
-        width={75}
-        height={100}
-        className='object-fill h-full rounded'
-      /> */}
+
     </Card>
   )
 }

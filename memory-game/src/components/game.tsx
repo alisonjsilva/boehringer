@@ -41,7 +41,7 @@ const Game: React.FC = () => {
 
             {!win && (
               <h2 className='text-xl  text-center text-gray-200 pb-6'>
-                Moviments: <strong>{attempts}</strong>
+                Moves: <strong>{attempts}</strong>
               </h2>
             )}
 
