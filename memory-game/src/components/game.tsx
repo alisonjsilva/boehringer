@@ -1,23 +1,39 @@
 'use client'
 
-import React from 'react'
+import React, { Suspense } from 'react'
 import ListKards from './list-kards'
 import KardForm from './kard-form'
 import { useGameLogic } from '@/hooks/game'
 import styles from './game.module.scss'
 
-const Game: React.FC = () => {
+type Props = {
+  users: any
+}
+
+export default function Game({ users }: Props) {
   const {
     attempts,
     win,
     theme,
     kards,
     startGame,
+    name,
+    userId,
     setTheme,
     handleGenerateKards,
     setAttempts,
     setWin,
+    setName,
+    setEmail,
+    setPhone,
   } = useGameLogic()
+  console.log('users', users)
+
+  const [showForm, setShowForm] = React.useState(false)
+
+  function handleShowForm() {
+    setShowForm(!showForm)
+  }
 
   return (
     <div className='flex flex-1 flex-col'>
@@ -25,13 +41,49 @@ const Game: React.FC = () => {
 
       </div>
       <div className='flex flex-col flex-1'>
-        {!startGame && (
-          <KardForm
-            theme={theme}
-            setTheme={setTheme}
-            handleGenerateKards={handleGenerateKards}
-          />
+        {!startGame && showForm && (
+          <>
+            <KardForm
+              theme={theme}
+              setTheme={setTheme}
+              handleGenerateKards={handleGenerateKards}
+              setName={setName}
+              setEmail={setEmail}
+              setPhone={setPhone}
+            />
+            <button className='w-full block px-4 py-2 mx-auto mt-4 text-white uppercase bg-red-500 rounded hover:bg-red-700'>
+              <a href='/'>{"< "}Back to Ranking</a>
+            </button>
+          </>
         )}
+
+        {!showForm && (
+          <div>
+            <div className='flex justify-center text-gray-100'>
+
+              <div className='flex flex-col text-center'>
+                <div className='text-xl pb-4'>Ranking</div>
+                <Suspense fallback={<div>Loading...</div>}>
+                  {users.map((user: any) => (
+                    <div className='py-2 flex gap-4 border-b justify-between' key={user.id}>
+                      <p>{user.name}</p>
+                      <p>{user.moves} Moves</p>
+                    </div>
+                  ))}
+                </Suspense>
+              </div>
+            </div>
+            <button
+              type='submit'
+              className='w-full block px-4 py-2 mx-auto mt-4 text-[#1a3664] uppercase bg-gray-300 rounded-lg hover:bg-gray-400'
+              onClick={handleShowForm}
+            >
+              New Game
+            </button>
+          </div>
+        )}
+
+
 
         {startGame && (
           <>
@@ -73,4 +125,4 @@ const Game: React.FC = () => {
   )
 }
 
-export default Game
+// export default Game

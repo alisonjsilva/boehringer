@@ -2,13 +2,17 @@ import React from 'react'
 
 type Props = {
   theme: string
-  setTheme: (theme: string) => void
+  setTheme: (theme: string) => void,
+  setName: (name: string) => void,
+  setEmail: (email: string) => void,
+  setPhone: (phone: string) => void,
   handleGenerateKards: (e: React.FormEvent) => void
 }
 
-const KardForm: React.FC<Props> = ({ theme, setTheme, handleGenerateKards }) => {
+const KardForm: React.FC<Props> = ({ theme, setTheme, handleGenerateKards, setName, setEmail, setPhone }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTheme(e.target.value)
+    // console.log(e.target)
   }
 
   return (
@@ -28,6 +32,7 @@ const KardForm: React.FC<Props> = ({ theme, setTheme, handleGenerateKards }) => 
           className='w-full px-4 py-3 mb-6 text-center placeholder-gray-400 border border-gray-300 rounded-lg focus:outline-none focus:ring-indigo-500 focus:border-indigo-500'
           placeholder='Nickname'
           name='nickname'
+          onChange={(e) => setName(e.target.value)}
         />
         <input
           type='text'
@@ -35,6 +40,7 @@ const KardForm: React.FC<Props> = ({ theme, setTheme, handleGenerateKards }) => 
           className='w-full px-4 py-3 mb-6 text-center placeholder-gray-400 border border-gray-300 rounded-lg focus:outline-none focus:ring-indigo-500 focus:border-indigo-500'
           placeholder='Mobile phone number'
           name='phone'
+          onChange={(e) => setPhone(e.target.value)}
         />
         <input
           type='email'
@@ -42,6 +48,7 @@ const KardForm: React.FC<Props> = ({ theme, setTheme, handleGenerateKards }) => 
           className='w-full px-4 py-3 text-center placeholder-gray-400 border border-gray-300 rounded-lg focus:outline-none focus:ring-indigo-500 focus:border-indigo-500'
           placeholder='Email'
           name='email'
+          onChange={(e) => setEmail(e.target.value)}
         />
         <button
           type='submit'

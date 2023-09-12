@@ -6,6 +6,7 @@ const CX = process.env.GOOGLE_CX
 
 export async function POST( request: Request ): Promise<NextResponse<string[]>> {
   const { query, num } = await request.json()
+  console.log(query, num)
 
   let allResults: string[] = []
 
