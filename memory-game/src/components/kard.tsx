@@ -21,7 +21,7 @@ const Kard: React.FC<Props> = ({ card, handleFlip }) => {
           src={card.image as string}
           alt='Picture of the author'
           // className='rounded-full [transform:rotateY(180deg)] [backface-visibility:hidden]'
-          className='rounded-full border-2'
+          className='rounded-full'
           fill={true}
           style={{ "objectFit": "contain" }}
         />) : (
@@ -38,7 +38,7 @@ const Kard: React.FC<Props> = ({ card, handleFlip }) => {
       <Image
         src={card.image as string}
         alt='Picture of the author'
-        className='rounded-full '
+        className='rounded-full hidden'
         fill={true}
         style={{ "objectFit": "contain" }}
       />
