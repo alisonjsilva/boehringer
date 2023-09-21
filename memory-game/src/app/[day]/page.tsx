@@ -3,7 +3,6 @@ import styles from '../layout.module.scss'
 import { sql } from '@vercel/postgres'
 
 type Props = {
-  day?: number
   params: { day: number };
 }
 export default async function Home({ params }: Props) {
