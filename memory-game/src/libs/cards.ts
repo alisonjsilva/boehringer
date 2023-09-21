@@ -1,4 +1,4 @@
-export const getRandomImages = async (query: string, num: number): Promise<string[]> => {
+export const getRandomImages = async (query: string, num: number, day: number = 1): Promise<string[]> => {
   const response = await fetch(
     '/api/images-generator',
     {
@@ -9,6 +9,7 @@ export const getRandomImages = async (query: string, num: number): Promise<strin
       body: JSON.stringify({
         query,
         num,
+        day
       }),
     }
   )

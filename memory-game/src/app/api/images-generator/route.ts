@@ -5,8 +5,8 @@ const API_KEY = process.env.GOOGLE_API_KEY
 const CX = process.env.GOOGLE_CX
 
 export async function POST( request: Request ): Promise<NextResponse<string[]>> {
-  const { query, num } = await request.json()
-  console.log(query, num)
+  const { query, num, day } = await request.json()
+  console.log(query, num, day)
 
   let allResults: string[] = []
 
@@ -34,14 +34,14 @@ export async function POST( request: Request ): Promise<NextResponse<string[]>> 
   // ]
 
   const randomResults = [
-    '/icons/01.png',
-    '/icons/02.png',
-    '/icons/03.png',
-    '/icons/04.png',
-    '/icons/05.png',
-    '/icons/06.png',
-    '/icons/07.png',
-    '/icons/08.png',
+    `/icons/${day}/01.png`,
+    `/icons/${day}/02.png`,
+    `/icons/${day}/03.png`,
+    `/icons/${day}/04.png`,
+    `/icons/${day}/05.png`,
+    `/icons/${day}/06.png`,
+    `/icons/${day}/07.png`,
+    `/icons/${day}/08.png`,
   ]
 
   console.log(randomResults)

@@ -8,9 +8,10 @@ import styles from './game.module.scss'
 
 type Props = {
   users: any
+  day?: number
 }
 
-export default function Game({ users }: Props) {
+export default function Game({ users, day = 1 }: Props) {
   const {
     attempts,
     win,
@@ -26,7 +27,7 @@ export default function Game({ users }: Props) {
     setName,
     setEmail,
     setPhone,
-  } = useGameLogic()
+  } = useGameLogic(day)
   console.log('users', users)
 
   const [showForm, setShowForm] = React.useState(false)

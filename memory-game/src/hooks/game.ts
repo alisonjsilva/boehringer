@@ -4,7 +4,7 @@ import { getRandomImages } from '@/libs/cards'
 import { formatCardsRandomly } from '@/libs/utils'
 import { use, useEffect, useState } from 'react'
 
-export const useGameLogic = () => {
+export const useGameLogic = (day: number = 1) => {
   const [attempts, setAttempts] = useState<number>(0)
   const [win, setWin] = useState<boolean>(false)
   const [theme, setTheme] = useState<string>('')
@@ -62,7 +62,7 @@ export const useGameLogic = () => {
     }))
 
     async function generateCards() {
-      const imagesUrls = await getRandomImages(query, totalImages)
+      const imagesUrls = await getRandomImages(query, totalImages, day)
       const newCards = await formatCardsRandomly(cards, imagesUrls)
       const { rows } = await addUser(name, email, phone)
       setUserId(rows[0]?.id)
