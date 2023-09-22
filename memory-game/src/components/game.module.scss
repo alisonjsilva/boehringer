@@ -9,8 +9,22 @@
     background-position-x: center;
 }
 
-.bgFooter {
+.bgFooter1 {
     background-image: url("/Fundo-01-footer.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position-x: center;
+}
+
+.bgFooter2 {
+    background-image: url("/Fundo-02-footer.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position-x: center;
+}
+
+.bgFooter3 {
+    background-image: url("/Fundo-03-footer.png");
     background-size: contain;
     background-repeat: no-repeat;
     background-position-x: center;

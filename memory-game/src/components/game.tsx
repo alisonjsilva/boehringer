@@ -118,7 +118,7 @@ export default function Game({ users, day = 1 }: Props) {
           </>
         )}
       </div>
-      <div className={`${styles.bgFooter} flex-1`}>
+      <div className={`${styles[`bgFooter${day}`]} flex-1`}>
 
       </div>
 
