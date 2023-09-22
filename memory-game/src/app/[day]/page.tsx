@@ -7,7 +7,7 @@ type Props = {
 }
 export default async function Home({ params }: Props) {
 
-  const { rows, fields } = await sql`SELECT * FROM Ranking ORDER BY Moves ASC, Ranking_date DESC LIMIT 5;`
+  const { rows, fields } = await sql`SELECT * FROM Ranking WHERE Day = ${params.day} ORDER BY Moves ASC, Ranking_date DESC, Time ASC LIMIT 5;`
   // INSERT INTO Ranking (Name, Userid, Moves) VALUES ('Alison 2', 2, 11);
   // console.log(rows)
 

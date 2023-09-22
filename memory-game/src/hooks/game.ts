@@ -10,12 +10,27 @@ export const useGameLogic = (day: number = 1) => {
   const [theme, setTheme] = useState<string>('')
   const [kards, setKards] = useState<IKard[]>([])
   const [startGame, setStartGame] = useState<boolean>(false)
+  const [elapsedTime, setElapsedTime] = useState<number>(0)
 
   const [name, setName] = useState<string>('')
   const [email, setEmail] = useState<string>('')
   const [score, setScore] = useState<number>(0)
   const [phone, setPhone] = useState<string>('')
   const [userId, setUserId] = useState<string>('')
+
+  useEffect(() => {
+    let intervalId: NodeJS.Timeout | null = null
+
+    if (startGame) {
+      intervalId = setInterval(() => {
+        setElapsedTime((prevElapsedTime) => prevElapsedTime + 1)
+      }, 1000)
+    }
+
+    return () => {
+      if (intervalId) clearInterval(intervalId)
+    }
+  }, [startGame])
 
   async function updateUserScore() {
     console.log('updateUserScore')
@@ -32,6 +47,8 @@ export const useGameLogic = (day: number = 1) => {
           userId,
           name,
           moves: attempts,
+          time: elapsedTime,
+          day,
         }),
       }
     )

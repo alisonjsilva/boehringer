@@ -63,15 +63,18 @@ export default function Game({ users, day = 1 }: Props) {
             <div className='flex justify-center text-gray-100'>
 
               <div className='flex flex-col text-center'>
-                <div className='text-xl pb-4'>Ranking</div>
-                <Suspense fallback={<div>Loading...</div>}>
-                  {users.map((user: any) => (
-                    <div className='py-2 flex gap-4 border-b justify-between' key={user.id}>
-                      <p>{user.name}</p>
-                      <p>{user.moves} Moves</p>
-                    </div>
-                  ))}
-                </Suspense>
+                {users.length > 0 && (
+                  <Suspense fallback={<div>Loading...</div>}>
+                    <div className='text-xl pb-4'>Ranking</div>
+                    {users.map((user: any) => (
+                      <div className='py-2 flex gap-4 border-b justify-between' key={user.id}>
+                        <p>{user.name}</p>
+                        <p>{user.moves} Moves</p>
+                      </div>
+                    ))}
+                  </Suspense>
+                )}
+
               </div>
             </div>
             <button
@@ -113,7 +116,7 @@ export default function Game({ users, day = 1 }: Props) {
             )}
 
             <button className='px-4 py-2 mt-4 text-white uppercase bg-red-500 rounded hover:bg-red-700'>
-              <a href='/'>Play again</a>
+              <a href={`/${day}`}>Play again</a>
             </button>
           </>
         )}
