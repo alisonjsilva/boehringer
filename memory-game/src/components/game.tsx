@@ -111,7 +111,7 @@ export default function Game({ users, day = 1 }: Props) {
 
             {win && (
               <h2 className='text-xl font-bold text-center text-gray-200 mt-6'>
-                You won in <strong>{attempts}</strong> moves!
+                You won in <strong>{attempts}</strong> moves
               </h2>
             )}
 

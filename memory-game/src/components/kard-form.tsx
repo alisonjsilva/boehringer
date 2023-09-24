@@ -18,14 +18,6 @@ const KardForm: React.FC<Props> = ({ theme, setTheme, handleGenerateKards, setNa
   return (
     <form onSubmit={handleGenerateKards} className='w-full text-center'>
       <div className='relative w-full'>
-        {/* <input
-          type='text'
-          value={theme}
-          onChange={handleChange}
-          required={true}
-          className='w-full px-4 py-3 text-center placeholder-gray-400 border border-gray-300 rounded-lg focus:outline-none focus:ring-indigo-500 focus:border-indigo-500'
-          placeholder='Ingrese tema: Ej. "auto ferrari"'
-        /> */}
         <input
           type='text'
           required={true}
@@ -57,7 +49,7 @@ const KardForm: React.FC<Props> = ({ theme, setTheme, handleGenerateKards, setNa
           Start Game
         </button>
 
-        <p className='text-sm text-gray-400 pt-4'>
+        <p className='text-[10px] text-gray-400 pt-4'>
           Availability and licensing may vary by country. Please refer to Global and National
           Competent Authority websites for further information. All veterinary medicinal products
           referenced on this booth are authorized in at least one country.

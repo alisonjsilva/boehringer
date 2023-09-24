@@ -31,6 +31,7 @@ const Kard: React.FC<Props> = ({ card, handleFlip }) => {
           className={`rounded-full  `}
           fill={true}
           style={{ "objectFit": "contain" }}
+          priority={true}
         />
       )
       }
@@ -38,7 +39,7 @@ const Kard: React.FC<Props> = ({ card, handleFlip }) => {
       <Image
         src={card.image as string}
         alt='Picture of the author'
-        className='rounded-full hidden'
+        className='rounded-full -z-10'
         fill={true}
         style={{ "objectFit": "contain" }}
       />
