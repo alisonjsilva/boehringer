@@ -4,12 +4,12 @@ type Props = {
   theme: string
   setTheme: (theme: string) => void,
   setName: (name: string) => void,
-  setEmail: (email: string) => void,
-  setPhone: (phone: string) => void,
+  // setEmail: (email: string) => void,
+  // setPhone: (phone: string) => void,
   handleGenerateKards: (e: React.FormEvent) => void
 }
 
-const KardForm: React.FC<Props> = ({ theme, setTheme, handleGenerateKards, setName, setEmail, setPhone }) => {
+const KardForm: React.FC<Props> = ({ theme, setTheme, handleGenerateKards, setName }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTheme(e.target.value)
     // console.log(e.target)
@@ -26,7 +26,7 @@ const KardForm: React.FC<Props> = ({ theme, setTheme, handleGenerateKards, setNa
           name='nickname'
           onChange={(e) => setName(e.target.value)}
         />
-        <input
+        {/* <input
           type='text'
           required={true}
           className='w-full px-4 py-3 mb-6 text-center placeholder-gray-400 border border-gray-300 rounded-lg focus:outline-none focus:ring-indigo-500 focus:border-indigo-500'
@@ -41,7 +41,7 @@ const KardForm: React.FC<Props> = ({ theme, setTheme, handleGenerateKards, setNa
           placeholder='Email'
           name='email'
           onChange={(e) => setEmail(e.target.value)}
-        />
+        /> */}
         <button
           type='submit'
           className='w-full block px-4 py-2 mx-auto mt-4 text-[#1a3664] uppercase bg-gray-300 rounded-lg hover:bg-gray-400'

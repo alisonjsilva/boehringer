@@ -25,8 +25,6 @@ export default function Game({ users, day = 1 }: Props) {
     setAttempts,
     setWin,
     setName,
-    setEmail,
-    setPhone,
   } = useGameLogic(day)
   console.log('users', users)
 
@@ -49,8 +47,6 @@ export default function Game({ users, day = 1 }: Props) {
               setTheme={setTheme}
               handleGenerateKards={handleGenerateKards}
               setName={setName}
-              setEmail={setEmail}
-              setPhone={setPhone}
             />
             <button className='w-full block px-4 py-2 mx-auto mt-4 text-white uppercase bg-red-500 rounded hover:bg-red-700'>
               <a href='/'>{"< "}Back to Ranking</a>

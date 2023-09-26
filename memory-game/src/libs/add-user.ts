@@ -1,4 +1,4 @@
-export const addUser = async (name: string, email: string, phone: string): Promise<any> => {
+export const addUser = async (name: string): Promise<any> => {
   const response = await fetch(
     '/api/add-user',
     {
@@ -8,8 +8,6 @@ export const addUser = async (name: string, email: string, phone: string): Promi
       },
       body: JSON.stringify({
         name,
-        email,
-        phone
       }),
     }
   )

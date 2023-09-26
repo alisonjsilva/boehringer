@@ -13,9 +13,9 @@ export const useGameLogic = (day: number = 1) => {
   const [elapsedTime, setElapsedTime] = useState<number>(0)
 
   const [name, setName] = useState<string>('')
-  const [email, setEmail] = useState<string>('')
+  // const [email, setEmail] = useState<string>('')
   const [score, setScore] = useState<number>(0)
-  const [phone, setPhone] = useState<string>('')
+  // const [phone, setPhone] = useState<string>('')
   const [userId, setUserId] = useState<string>('')
 
   useEffect(() => {
@@ -81,9 +81,9 @@ export const useGameLogic = (day: number = 1) => {
     async function generateCards() {
       const imagesUrls = await getRandomImages(query, totalImages, day)
       const newCards = await formatCardsRandomly(cards, imagesUrls)
-      const { rows } = await addUser(name, email, phone)
+      const { rows } = await addUser(name)
       setUserId(rows[0]?.id)
-      // console.log('rows', rows[0]?.id)
+      console.log('rows', rows[0]?.id, userId)
       return newCards
     }
 
@@ -104,15 +104,12 @@ export const useGameLogic = (day: number = 1) => {
     kards,
     startGame,
     name,
-    email,
     userId,
     setTheme,
     handleGenerateKards,
     setAttempts,
     setWin,
     setName,
-    setEmail,
     setScore,
-    setPhone,
   }
 }
