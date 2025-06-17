@@ -1,12 +1,17 @@
 'use client'
 import { use, useEffect } from 'react'
-import { sql } from '@vercel/postgres'
+import { supabase } from '@/lib/supabase'
 import UsersQuery from './usersQuery'
 
 const getUsers = async (): Promise<any> => {
-    // const data = await fetch("https://jsonplaceholder.typicode.com/posts")
-    const { rows, fields } = await sql`SELECT * FROM users;`
-    // const users = await data.json()
+    const { data: rows, error } = await supabase
+        .from('users')
+        .select('*')
+    
+    if (error) {
+        console.error('Error fetching users:', error)
+        return []
+    }
 
     return rows
 }

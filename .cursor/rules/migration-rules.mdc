@@ -1,0 +1,15 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+- The project is what's in the memory-game folder.
+- Use MCP whenever necessary and possible.
+- Pay attention to the project's pattern; always follow the same line of implementations.
+- Always check if the project is working when necessary.
+- Important: Always read and update the task list in @SUPABASE_MIGRATION_GUIDEted to migrating the project to Supabase.
+- Do not leave linting errors.
+- Whenever you use MCP for browser checks, verify that the server is not already running on one of the ports to avoid creating multiple instances.
+- Supabase CLI is installed, but always check that you are working on the correct project, as there are other projects on this same machine.
+- The keys are in .env.local, including SUPABASE_SERVICE_ROLE_KEY.
+- All the code and comments should be in English

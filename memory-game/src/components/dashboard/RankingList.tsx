@@ -7,15 +7,37 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table"
-import { sql } from "@vercel/postgres"
-
+import { createServerSupabaseClient } from '@/lib/supabase'
 
 type Props = {
     rows: any;
 }
 
 export default async function RankingList() {
-    const { rows, fields } = await sql`SELECT id, name, moves, time, day FROM Ranking ORDER BY Day DESC, Moves ASC, Ranking_date DESC, Time;`
+    const supabase = createServerSupabaseClient()
+    
+    const { data: rows, error } = await supabase
+        .from('ranking')
+        .select('id, name, moves, time, day')
+        .order('day', { ascending: false })
+        .order('moves', { ascending: true })
+        .order('ranking_date', { ascending: false })
+        .order('time', { ascending: true })
+
+    if (error) {
+        console.error('Error fetching ranking:', error)
+        return <div>Error loading ranking data</div>
+    }
+
+    // Create fields array similar to the original structure
+    const fields = [
+        { name: 'userid' },
+        { name: 'name' },
+        { name: 'moves' },
+        { name: 'time' },
+        { name: 'day' }
+    ]
+
     console.log(rows)
     return (
         <Table>
@@ -27,28 +49,20 @@ export default async function RankingList() {
                             <TableHead key={field.name}>{field.name}</TableHead>
                         ))
                     }
-
                 </TableRow>
             </TableHeader>
             <TableBody>
                 {
-                    rows.map((row: any) => (
+                    rows?.map((row: any) => (
                         <TableRow key={row.id}>
                             <TableCell>{row.userid}</TableCell>
                             <TableCell className="font-medium">{row.name}</TableCell>
-                            {/* <TableCell>{row.ranking_date.toString()}</TableCell> */}
                             <TableCell>{row.moves}</TableCell>
                             <TableCell>{row.time}</TableCell>
                             <TableCell>{row.day}</TableCell>
                         </TableRow>
                     ))
                 }
-                {/* <TableRow>
-                    <TableCell className="font-medium">INV001</TableCell>
-                    <TableCell>Paid</TableCell>
-                    <TableCell>Credit Card</TableCell>
-                    <TableCell className="text-right">$250.00</TableCell>
-                </TableRow> */}
             </TableBody>
         </Table>
     )
