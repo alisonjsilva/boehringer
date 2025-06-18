@@ -34,14 +34,14 @@ export async function POST( request: Request ): Promise<NextResponse<string[]>> 
   // ]
 
   const randomResults = [
-    `/icons/${day}/01.png`,
-    `/icons/${day}/02.png`,
-    `/icons/${day}/03.png`,
-    `/icons/${day}/04.png`,
-    `/icons/${day}/05.png`,
-    `/icons/${day}/06.png`,
-    `/icons/${day}/07.png`,
-    `/icons/${day}/08.png`,
+    `/v2/icons/${day}/01.png`,
+    `/v2/icons/${day}/02.png`,
+    `/v2/icons/${day}/03.png`,
+    `/v2/icons/${day}/04.png`,
+    `/v2/icons/${day}/05.png`,
+    `/v2/icons/${day}/06.png`,
+    `/v2/icons/${day}/07.png`,
+    `/v2/icons/${day}/08.png`,
   ]
 
   console.log(randomResults)

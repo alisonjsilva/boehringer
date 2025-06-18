@@ -14,7 +14,7 @@ const Kard: React.FC<Props> = ({ card, handleFlip }) => {
 
   // {card.flipped ? card.image ?? card.defaultImage : card.defaultImage}
   return (
-    <Card key={card.id} className={`py-3 relative bg-[#1a3664] border-0 ${card.flipped ? "transition-all duration-500 [transform-style:preserve-3d] [transform:rotateY(360deg)]" ?? card.defaultImage : ""}`} onClick={handleClick}>
+    <Card key={card.id} className={`py-3 relative bg-[#06312a] border-0 ${card.flipped ? "transition-all duration-500 [transform-style:preserve-3d] [transform:rotateY(360deg)]" ?? card.defaultImage : ""}`} onClick={handleClick}>
 
       {card.flipped ? (
         <Image

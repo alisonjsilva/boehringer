@@ -1,12 +1,14 @@
-import { sql } from '@vercel/postgres'
 import { NextResponse } from 'next/server'
 
 export async function GET(request: Request) {
     try {
-        const result =
-            await sql`CREATE TABLE Users ( Name varchar(255), Email varchar(255), Phone varchar(255) );`
-        return NextResponse.json({ result }, { status: 200 })
+        // Tables are now managed through Supabase migrations
+        // Check supabase/migrations/ directory for schema definitions
+        return NextResponse.json({ 
+            message: "Tables are now managed through Supabase migrations. Check supabase/migrations/ directory for schema definitions.",
+            migrated: true 
+        }, { status: 200 })
     } catch (error) {
-        return NextResponse.json({ error }, { status: 500 })
+        return NextResponse.json({ error: error instanceof Error ? error.message : 'Unknown error' }, { status: 500 })
     }
 }

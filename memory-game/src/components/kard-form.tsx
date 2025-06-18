@@ -44,7 +44,7 @@ const KardForm: React.FC<Props> = ({ theme, setTheme, handleGenerateKards, setNa
         /> */}
         <button
           type='submit'
-          className='w-full block px-4 py-2 mx-auto mt-4 text-[#1a3664] uppercase bg-gray-300 rounded-lg hover:bg-gray-400'
+          className='w-full block px-4 py-2 mx-auto mt-4 text-[#06312a] uppercase bg-gray-300 rounded-lg hover:bg-gray-400'
         >
           Start Game
         </button>

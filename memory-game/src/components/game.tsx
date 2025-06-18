@@ -75,7 +75,7 @@ export default function Game({ users, day = 1 }: Props) {
             </div>
             <button
               type='submit'
-              className='w-full block px-4 py-2 mx-auto mt-4 text-[#1a3664] uppercase bg-gray-300 rounded-lg hover:bg-gray-400'
+              className='w-full block px-4 py-2 mx-auto mt-4 text-[#06312a] uppercase bg-gray-300 rounded-lg hover:bg-gray-400'
               onClick={handleShowForm}
             >
               New Game

@@ -1,11 +1,26 @@
-import { sql } from '@vercel/postgres'
-export default async function UsersQuery() {
+import { createServerSupabaseClient } from '@/lib/supabase'
 
-    const { rows, fields } = await sql`SELECT * FROM users;`
+export default async function UsersQuery() {
+    const supabase = createServerSupabaseClient()
+    
+    const { data: rows, error } = await supabase
+        .from('users')
+        .select('*')
+
+    if (error) {
+        console.error('Error fetching users:', error)
+        return (
+            <div>
+                <h1>Users</h1>
+                <p>Error loading users</p>
+            </div>
+        )
+    }
+
     return (
         <div>
             <h1>Users</h1>
-            <p>Users list</p>
+            <p>Users list - {rows?.length || 0} users found</p>
         </div>
     )
 }
