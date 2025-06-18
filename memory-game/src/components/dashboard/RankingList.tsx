@@ -16,9 +16,9 @@ type Props = {
 export default async function RankingList() {
     const supabase = createServerSupabaseClient()
     
-    const { data: rows, error } = await supabase
+    const { data: rows, error, count } = await supabase
         .from('ranking')
-        .select('id, name, moves, time, day')
+        .select('id, name, userid, moves, time, day, ranking_date')
         .order('day', { ascending: false })
         .order('moves', { ascending: true })
         .order('ranking_date', { ascending: false })
@@ -38,7 +38,7 @@ export default async function RankingList() {
         { name: 'day' }
     ]
 
-    console.log(rows)
+    console.log('rows', rows, count)
     return (
         <Table>
             <TableCaption>A list of all participations.</TableCaption>
