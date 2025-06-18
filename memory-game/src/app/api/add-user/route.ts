@@ -28,6 +28,6 @@ export async function POST(request: Request) {
         return NextResponse.json({ rows: [insertData] }, { status: 200 })
     } catch (error) {
         console.error('Error adding user:', error)
-        return NextResponse.json({ error: error instanceof Error ? error.message : 'Unknown error', "assd": "as" }, { status: 500 })
+        return NextResponse.json({ error: error instanceof Error ? error.message : 'Unknown error' }, { status: 500 })
     }
 }
