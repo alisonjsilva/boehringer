@@ -81,9 +81,9 @@ interface IKard {
 5. **Ranking** - Leaderboard updates with best performances
 
 ### Themes & Days
-- **Day 1** - Theme set with `/icons/1/` image collection
-- **Day 2** - Theme set with `/icons/2/` image collection  
-- **Day 3** - Theme set with `/icons/3/` image collection
+- **Day 1** - Theme set with `/v2/icons/1/` image collection
+- **Day 2** - Theme set with `/v2/icons/2/` image collection  
+- **Day 3** - Theme set with `/v2/icons/3/` image collection
 
 Each theme contains 8 unique images (01.png - 08.png) for pair matching.
 

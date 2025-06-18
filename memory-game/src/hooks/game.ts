@@ -75,7 +75,7 @@ export const useGameLogic = (day: number = 1) => {
       id: i,
       flipped: false,
       matched: false,
-      defaultImage: '/Icon00.png',
+      defaultImage: '/v2/Icon00.png',
     }))
 
     async function generateCards() {

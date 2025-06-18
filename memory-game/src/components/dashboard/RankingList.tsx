@@ -38,7 +38,6 @@ export default async function RankingList() {
         { name: 'day' }
     ]
 
-    console.log('rows', rows, count)
     return (
         <Table>
             <TableCaption>A list of all participations.</TableCaption>
