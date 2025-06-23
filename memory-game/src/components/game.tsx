@@ -29,6 +29,21 @@ export default function Game({ users, day = 1 }: Props) {
   console.log('users', users)
 
   const [showForm, setShowForm] = React.useState(false)
+  const [legalText, setLegalText] = React.useState('')
+
+  React.useEffect(() => {
+    async function fetchLegalText() {
+      try {
+        const response = await fetch(`/api/get-legal-text?day=${day}`)
+        const data = await response.json()
+        setLegalText(data.text || '')
+      } catch (error) {
+        console.error('Error fetching legal text:', error)
+      }
+    }
+    
+    fetchLegalText()
+  }, [day])
 
   function handleShowForm() {
     setShowForm(!showForm)
@@ -117,8 +132,14 @@ export default function Game({ users, day = 1 }: Props) {
           </>
         )}
       </div>
-      <div className={`${styles[`bgFooter${day}`]} flex-1`}>
-
+      <div className={`${styles[`bgFooter${day}`]} flex-1 flex flex-col justify-end`}>
+        {legalText && (
+          <div className="px-4 pb-4">
+            <p className="text-[8px] text-center text-white leading-relaxed">
+              {legalText}
+            </p>
+          </div>
+        )}
       </div>
 
     </div>
