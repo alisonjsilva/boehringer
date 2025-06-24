@@ -8,11 +8,12 @@ type Props = {
 
 export default async function Home({ params }: Props) {
   const supabase = createServerSupabaseClient()
+  const dayNumber = Number(params.day)
   
   const { data: rows, error } = await supabase
     .from('ranking')
     .select('*')
-    .eq('day', params.day)
+    .eq('day', dayNumber)
     .order('moves', { ascending: true })
     .order('ranking_date', { ascending: false })
     .order('time', { ascending: true })
@@ -29,7 +30,7 @@ export default async function Home({ params }: Props) {
         KEMORY GAME
       </h1> */}
 
-      <Game users={rows || []} day={params.day ? params.day : 1} />
+      <Game users={rows || []} day={dayNumber} />
 
     </main>
   )

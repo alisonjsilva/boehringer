@@ -1,3 +1,6 @@
+'use client'
+
+import { useEffect, useState } from "react"
 import {
     Table,
     TableBody,
@@ -7,26 +10,72 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table"
-import { createServerSupabaseClient } from '@/lib/supabase'
 
-type Props = {
-    rows: any;
+type RankingRow = {
+    id: string;
+    name: string;
+    userid: string;
+    moves: number;
+    time: number;
+    day: number;
+    ranking_date: string;
 }
 
-export default async function RankingList() {
-    const supabase = createServerSupabaseClient()
-    
-    const { data: rows, error, count } = await supabase
-        .from('ranking')
-        .select('id, name, userid, moves, time, day, ranking_date')
-        .order('day', { ascending: false })
-        .order('moves', { ascending: true })
-        .order('ranking_date', { ascending: false })
-        .order('time', { ascending: true })
+export default function RankingList() {
+    const [rows, setRows] = useState<RankingRow[]>([])
+    const [loading, setLoading] = useState(true)
+    const [error, setError] = useState<string | null>(null)
+
+    const fetchData = async () => {
+        try {
+            setLoading(true)
+            const response = await fetch('/api/get-ranking', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                cache: 'no-store', // Ensure we always get fresh data
+            })
+
+            if (!response.ok) {
+                throw new Error('Failed to fetch ranking data')
+            }
+
+            const data = await response.json()
+            setRows(data.data || [])
+            setError(null)
+        } catch (err) {
+            console.error('Error fetching ranking:', err)
+            setError('Error loading ranking data')
+        } finally {
+            setLoading(false)
+        }
+    }
+
+    useEffect(() => {
+        fetchData()
+    }, [])
+
+    // Create a function to refresh data that can be called from parent
+    useEffect(() => {
+        const handleRefresh = () => {
+            fetchData()
+        }
+
+        // Listen for custom refresh event
+        window.addEventListener('refreshRanking', handleRefresh)
+        
+        return () => {
+            window.removeEventListener('refreshRanking', handleRefresh)
+        }
+    }, [])
+
+    if (loading) {
+        return <div className="text-center py-4">Loading ranking data...</div>
+    }
 
     if (error) {
-        console.error('Error fetching ranking:', error)
-        return <div>Error loading ranking data</div>
+        return <div className="text-center py-4 text-red-500">{error}</div>
     }
 
     // Create fields array similar to the original structure
