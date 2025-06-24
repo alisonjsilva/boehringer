@@ -1,26 +1,33 @@
 import Game from '@/components/game'
 import styles from '../layout.module.scss'
-import { createServerSupabaseClient } from '@/lib/supabase'
 
 type Props = {
   params: { day: number };
 }
 
 export default async function Home({ params }: Props) {
-  const supabase = createServerSupabaseClient()
   const dayNumber = Number(params.day)
   
-  const { data: rows, error } = await supabase
-    .from('ranking')
-    .select('*')
-    .eq('day', dayNumber)
-    .order('moves', { ascending: true })
-    .order('ranking_date', { ascending: false })
-    .order('time', { ascending: true })
-    .limit(5)
-
-  if (error) {
-    console.error('Error fetching ranking:', error)
+  // Fetch data using the enhanced get-ranking API
+  let rows = []
+  try {
+    const response = await fetch(`http://localhost:3000/api/get-ranking?day=${dayNumber}`, {
+      cache: 'no-store', // Disable caching to ensure fresh data
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    })
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`)
+    }
+    
+    const data = await response.json()
+    rows = data.rows || []
+    console.log('Successfully fetched', rows.length, 'rows for day', dayNumber)
+  } catch (error) {
+    console.error('Error fetching ranking data:', error)
+    rows = []
   }
 
   return (
@@ -30,7 +37,7 @@ export default async function Home({ params }: Props) {
         KEMORY GAME
       </h1> */}
 
-      <Game users={rows || []} day={dayNumber} />
+      <Game users={rows} day={dayNumber} />
 
     </main>
   )

@@ -42,7 +42,7 @@ export default function RankingList() {
             }
 
             const data = await response.json()
-            setRows(data.data || [])
+            setRows(data.rows || [])
             setError(null)
         } catch (err) {
             console.error('Error fetching ranking:', err)

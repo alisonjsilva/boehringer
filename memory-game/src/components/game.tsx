@@ -135,7 +135,7 @@ export default function Game({ users, day = 1 }: Props) {
       <div className={`${styles[`bgFooter${day}`]} flex-1 flex flex-col justify-end`}>
         {legalText && (
           <div className="px-4 pb-4">
-            <p className="text-[8px] text-center text-white leading-relaxed">
+            <p className="text-[4px] text-center text-white leading-relaxed">
               {legalText}
             </p>
           </div>
