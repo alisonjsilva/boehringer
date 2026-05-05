@@ -20,6 +20,7 @@ const ListKards: React.FC<Props> = ({
   const [cards, setCards] = useState<IKard[]>(initialCards)
   const [cardsClicked, setCardsClicked] = useState<number[]>([])
   const [canClick, setCanClick] = useState(true)
+  const [matchedIds, setMatchedIds] = useState<number[]>([])
 
   const flipCard = (id: number) => {
     if (!canClick || cardsClicked.length === 2 || cardsClicked.includes(id) || win) {
@@ -78,10 +79,11 @@ const ListKards: React.FC<Props> = ({
         })
 
         setCards(matchedCards)
+        setMatchedIds(prev => [...prev, firstCard, secondCard])
 
-        const win = matchedCards.every((card) => card.matched)
+        const isWin = matchedCards.every((card) => card.matched)
 
-        if (win) {
+        if (isWin) {
           setWin(true)
         }
 
@@ -101,14 +103,19 @@ const ListKards: React.FC<Props> = ({
   }, [cardsClicked])
 
   return (
-    <div className='flex flex-1 w-full'>
-      <div className='grid grid-cols-4 grid-rows-4 auto-rows-fr justify-center w-full gap-4'>
-        {cards.map((card) => (
-          <Kard key={card.id} card={card} handleFlip={flipCard} />
+    <div className='flex flex-1 w-full items-center justify-center'>
+      <div className='grid grid-cols-4 md:grid-cols-8 justify-center w-full gap-3 md:gap-4 max-w-6xl mx-auto'>
+        {cards.map((card, index) => (
+          <Kard 
+            key={card.id} 
+            card={card} 
+            handleFlip={flipCard}
+            isNewlyMatched={matchedIds.includes(card.id)}
+            animationDelay={index * 50}
+          />
         ))}
       </div>
     </div>
-
   )
 }
 

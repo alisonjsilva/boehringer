@@ -34,7 +34,7 @@ export default function RankingList() {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                cache: 'no-store', // Ensure we always get fresh data
+                cache: 'no-store',
             })
 
             if (!response.ok) {
@@ -56,13 +56,11 @@ export default function RankingList() {
         fetchData()
     }, [])
 
-    // Create a function to refresh data that can be called from parent
     useEffect(() => {
         const handleRefresh = () => {
             fetchData()
         }
 
-        // Listen for custom refresh event
         window.addEventListener('refreshRanking', handleRefresh)
         
         return () => {
@@ -71,14 +69,18 @@ export default function RankingList() {
     }, [])
 
     if (loading) {
-        return <div className="text-center py-4">Loading ranking data...</div>
+        return (
+            <div className="flex flex-col items-center justify-center py-12">
+                <div className='loading-spinner'></div>
+                <p className="text-white/60 mt-4">Loading ranking data...</p>
+            </div>
+        )
     }
 
     if (error) {
-        return <div className="text-center py-4 text-red-500">{error}</div>
+        return <div className="text-center py-4 text-red-400">{error}</div>
     }
 
-    // Create fields array similar to the original structure
     const fields = [
         { name: 'userid' },
         { name: 'name' },

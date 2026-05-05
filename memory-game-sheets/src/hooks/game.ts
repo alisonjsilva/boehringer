@@ -67,15 +67,14 @@ export const useGameLogic = (day: number = 1) => {
     e.preventDefault()
 
     const query = theme
-    const numColumns = 4 // process.env.NEXT_PUBLIC_CARDS_NUM_COLUMNS as unknown as number
-    const totalCards = Math.pow(numColumns, 2)
+    const totalCards = 16
     const totalImages = totalCards / 2
 
     const cards: IKard[] = Array.from(Array(totalCards).keys()).map((i) => ({
       id: i,
       flipped: false,
       matched: false,
-      defaultImage: '/v2/Icon00.png',
+      defaultImage: `/v3/icons/${day}/REVERSO.png`,
     }))
 
     async function generateCards() {

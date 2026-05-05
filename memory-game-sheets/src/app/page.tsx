@@ -1,5 +1,4 @@
 import Game from '@/components/game'
-import styles from './layout.module.scss'
 import { getRows, SHEETS } from '@/lib/google-sheets'
 
 type Props = {
@@ -14,7 +13,6 @@ export default async function Home({ params }: Props) {
     const allRows = await getRows(SHEETS.RANKING)
     
     if (allRows.length > 1) {
-      // Header: [id, name, userid, moves, time, day, ranking_date]
       rows = allRows
         .slice(1)
         .map((row) => ({
@@ -39,7 +37,7 @@ export default async function Home({ params }: Props) {
   }
 
   return (
-    <main style={styles} className={`flex flex-col justify-center min-h-screen p-4 pt-0  md:mx-auto`}>
+    <main className='flex flex-col justify-center min-h-screen'>
       <Game users={rows} day={params.day ? params.day : 1} />
     </main>
   )

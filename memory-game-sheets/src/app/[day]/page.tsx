@@ -1,5 +1,5 @@
 import Game from '@/components/game'
-import styles from '../layout.module.scss'
+import { getRows, SHEETS } from '@/lib/google-sheets'
 
 type Props = {
   params: { day: number };
@@ -10,27 +10,35 @@ export default async function Home({ params }: Props) {
   
   let rows: any[] = []
   try {
-    const response = await fetch(`http://localhost:3000/api/get-ranking?day=${dayNumber}`, {
-      cache: 'no-store',
-      headers: {
-        'Content-Type': 'application/json',
-      }
-    })
+    const allRows = await getRows(SHEETS.RANKING)
     
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`)
+    if (allRows.length > 1) {
+      rows = allRows
+        .slice(1)
+        .map((row) => ({
+          id: row[0],
+          name: row[1],
+          userid: row[2],
+          moves: Number(row[3]),
+          time: Number(row[4]),
+          day: Number(row[5]),
+          ranking_date: row[6],
+        }))
+        .filter((row) => row.day === dayNumber)
+        .sort((a, b) => {
+          if (a.moves !== b.moves) return a.moves - b.moves
+          if (a.ranking_date !== b.ranking_date) return b.ranking_date.localeCompare(a.ranking_date)
+          return a.time - b.time
+        })
+        .slice(0, 5)
     }
-    
-    const data = await response.json()
-    rows = data.rows || []
-    console.log('Successfully fetched', rows.length, 'rows for day', dayNumber)
   } catch (error) {
     console.error('Error fetching ranking data:', error)
     rows = []
   }
 
   return (
-    <main style={styles} className={`flex flex-col justify-center min-h-screen p-4 pt-0  md:mx-auto`}>
+    <main className='flex flex-col justify-center min-h-screen'>
       <Game users={rows} day={dayNumber} />
     </main>
   )

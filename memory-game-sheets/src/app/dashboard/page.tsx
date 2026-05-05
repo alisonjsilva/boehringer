@@ -1,4 +1,3 @@
-import styles from '../layout.module.scss'
 import RankingList from '@/components/dashboard/RankingList'
 import ActionButtons from './ButtonActions'
 
@@ -8,7 +7,8 @@ type Props = {
 
 export default async function Home({ params }: Props) {
   return (
-    <main style={styles} className={`flex flex-col justify-center min-h-screen p-4 pt-0  md:mx-auto bg-white`}>
+    <main className='flex flex-col min-h-screen p-6 bg-slate-900'>
+      <h1 className='text-2xl font-light text-white text-center mb-6'>Dashboard</h1>
       <ActionButtons />
       <RankingList />
     </main>
