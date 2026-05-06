@@ -104,7 +104,7 @@ const ListKards: React.FC<Props> = ({
 
   return (
     <div className='flex flex-1 w-full items-center justify-center'>
-      <div className='grid grid-cols-4 md:grid-cols-8 justify-center w-full gap-3 md:gap-4 max-w-6xl mx-auto'>
+      <div className='grid grid-cols-4 md:grid-cols-8 justify-center w-full gap-3 md:gap-3 max-w-[90rem] mx-auto px-2'>
         {cards.map((card, index) => (
           <Kard 
             key={card.id} 
