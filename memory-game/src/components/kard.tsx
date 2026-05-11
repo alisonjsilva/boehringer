@@ -23,6 +23,9 @@ const Kard: React.FC<Props> = ({ card, handleFlip }) => {
           // className='rounded-full [transform:rotateY(180deg)] [backface-visibility:hidden]'
           className='rounded-full'
           fill={true}
+          sizes='(max-width: 768px) 25vw, (max-width: 1280px) 18vw, 300px'
+          quality={100}
+          unoptimized
           style={{ "objectFit": "contain" }}
         />) : (
         <Image
@@ -30,6 +33,9 @@ const Kard: React.FC<Props> = ({ card, handleFlip }) => {
           alt='Picture of the author'
           className={`rounded-full  `}
           fill={true}
+          sizes='(max-width: 768px) 25vw, (max-width: 1280px) 18vw, 300px'
+          quality={100}
+          unoptimized
           style={{ "objectFit": "contain" }}
           priority={true}
         />
@@ -41,6 +47,9 @@ const Kard: React.FC<Props> = ({ card, handleFlip }) => {
         alt='Picture of the author'
         className='rounded-full -z-10'
         fill={true}
+        sizes='(max-width: 768px) 25vw, (max-width: 1280px) 18vw, 300px'
+        quality={100}
+        unoptimized
         style={{ "objectFit": "contain" }}
       />
 

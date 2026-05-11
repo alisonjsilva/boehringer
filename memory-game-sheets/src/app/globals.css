@@ -40,6 +40,11 @@
 @layer base {
   * {
     @apply border-border;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
   }
   body {
     @apply text-white;
@@ -76,6 +81,37 @@
 @keyframes cardFlipOut {
   0% { transform: rotateY(180deg); }
   100% { transform: rotateY(360deg); }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-up {
+  animation: slide-up 0.2s ease-out;
+}
+
+@keyframes keyboard-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-keyboard-in {
+  animation: keyboard-in 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-origin: top center;
 }
 
 @keyframes cardMatch {

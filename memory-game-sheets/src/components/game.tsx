@@ -1,8 +1,9 @@
 'use client'
 
-import React, { Suspense } from 'react'
+import React, { Suspense, useCallback } from 'react'
 import ListKards from './list-kards'
 import KardForm from './kard-form'
+import VirtualKeyboard from './virtual-keyboard'
 import { useGameLogic } from '@/hooks/game'
 import Image from 'next/image'
 
@@ -30,6 +31,8 @@ export default function Game({ users, day = 1 }: Props) {
   const [showForm, setShowForm] = React.useState(false)
   const [legalText, setLegalText] = React.useState('')
   const [isLoading, setIsLoading] = React.useState(false)
+  const [showKeyboard, setShowKeyboard] = React.useState(false)
+  const [nickname, setNickname] = React.useState('')
 
   React.useEffect(() => {
     async function fetchLegalText() {
@@ -51,6 +54,7 @@ export default function Game({ users, day = 1 }: Props) {
 
   async function handleStartGame(e: React.FormEvent) {
     setIsLoading(true)
+    setShowKeyboard(false)
     try {
       await handleGenerateKards(e)
     } finally {
@@ -58,25 +62,70 @@ export default function Game({ users, day = 1 }: Props) {
     }
   }
 
+  const handleKeyPress = useCallback((key: string) => {
+    setNickname((prev) => {
+      const newValue = prev + key
+      setName(newValue)
+      return newValue
+    })
+  }, [setName])
+
+  const handleBackspace = useCallback(() => {
+    setNickname((prev) => {
+      const newValue = prev.slice(0, -1)
+      setName(newValue)
+      return newValue
+    })
+  }, [setName])
+
+  const handleKeyboardEnter = useCallback(() => {
+    setShowKeyboard(false)
+    if (nickname.trim()) {
+      handleStartGame({ preventDefault: () => {} } as React.FormEvent)
+    }
+  }, [nickname])
+
+  const handleInputClick = useCallback(() => {
+    setShowKeyboard(true)
+  }, [])
+
+  const handleCloseKeyboard = useCallback(() => {
+    setShowKeyboard(false)
+  }, [])
+
   return (
-    <div className='flex flex-1 flex-col min-h-screen'>
+    <div className={`flex flex-1 flex-col ${showKeyboard ? 'h-[100dvh] overflow-hidden' : 'min-h-screen'}`}>
       {/* Header with Essilor branding */}
-      <header className='flex items-center justify-center gap-8 pt-8 pb-2 px-4'>
+      <header
+        className={`flex items-center justify-center px-4 transition-all duration-300 ease-out ${
+          showKeyboard ? 'gap-4 pt-3 pb-1' : 'gap-8 pt-8 pb-2'
+        }`}
+      >
         <Image
           src="/v3/logo-essilor-01.png"
           alt="Essilor"
           width={120}
           height={120}
-          className='object-contain'
+          className={`object-contain transition-all duration-300 ease-out ${
+            showKeyboard ? 'w-[60px] h-[60px]' : 'w-[120px] h-[120px]'
+          }`}
           priority
         />
-        <h1 className='text-4xl md:text-6xl font-extralight text-white tracking-wide'>
+        <h1
+          className={`font-extralight text-white tracking-wide transition-all duration-300 ease-out ${
+            showKeyboard ? 'text-2xl md:text-3xl' : 'text-4xl md:text-6xl'
+          }`}
+        >
           Memory Game
         </h1>
       </header>
 
       {/* Main content */}
-      <div className='flex flex-col flex-1 px-4 md:px-8 pb-4'>
+      <div
+        className={`flex flex-col px-4 md:px-8 pb-4 ${
+          showKeyboard ? 'flex-1 min-h-0' : 'flex-1'
+        }`}
+      >
         
         {/* Loading overlay */}
         {isLoading && (
@@ -90,19 +139,57 @@ export default function Game({ users, day = 1 }: Props) {
 
         {/* Form state */}
         {!startGame && showForm && (
-          <div className='animate-fade-in-up max-w-md mx-auto w-full mt-4'>
-            <KardForm
-              theme={theme}
-              setTheme={setTheme}
-              handleGenerateKards={handleStartGame}
-              setName={setName}
-            />
-            <button 
-              className='w-full block px-6 py-3 mx-auto mt-4 text-white uppercase bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 hover:bg-white/20 transition-all duration-300'
-              onClick={handleShowForm}
+          <div
+            className={`flex flex-col w-full ${
+              showKeyboard ? 'flex-1 min-h-0 gap-3' : 'gap-4 mt-4'
+            }`}
+          >
+            <div
+              className={`mx-auto w-full transition-all duration-300 ease-out ${
+                showKeyboard ? 'max-w-md' : 'max-w-md animate-fade-in-up'
+              }`}
             >
-              ← Back to Ranking
-            </button>
+              <KardForm
+                theme={theme}
+                setTheme={setTheme}
+                handleGenerateKards={handleStartGame}
+                setName={setName}
+                nickname={nickname}
+                onInputClick={handleInputClick}
+                compact={showKeyboard}
+              />
+
+              {/* Back to Ranking — collapses smoothly when keyboard opens */}
+              <div
+                className={`grid transition-all duration-300 ease-out ${
+                  showKeyboard ? 'grid-rows-[0fr] opacity-0 mt-0' : 'grid-rows-[1fr] opacity-100 mt-4'
+                }`}
+              >
+                <div className='overflow-hidden'>
+                  <button
+                    className='w-full block px-6 py-3 mx-auto text-white uppercase bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 hover:bg-white/20 transition-all duration-300'
+                    onClick={handleShowForm}
+                  >
+                    ← Back to Ranking
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Virtual Keyboard area — fills remaining viewport */}
+            <div
+              className={`w-full px-2 md:px-4 transition-all duration-300 ease-out ${
+                showKeyboard ? 'flex-1 min-h-0 opacity-100' : 'h-0 opacity-0 pointer-events-none overflow-hidden'
+              }`}
+            >
+              <VirtualKeyboard
+                visible={showKeyboard}
+                onKeyPress={handleKeyPress}
+                onBackspace={handleBackspace}
+                onEnter={handleKeyboardEnter}
+                onClose={handleCloseKeyboard}
+              />
+            </div>
           </div>
         )}
 
@@ -118,7 +205,7 @@ export default function Game({ users, day = 1 }: Props) {
                 }>
                   <h2 className='text-2xl font-light text-center text-white mb-4'>🏆 Ranking</h2>
                   <div className='space-y-2'>
-                    {users.map((user: any, index: number) => (
+                    {users.slice(0, 5).map((user: any, index: number) => (
                       <div 
                         className='flex gap-4 items-center justify-between p-3 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 transition-colors' 
                         key={user.id}
@@ -186,9 +273,13 @@ export default function Game({ users, day = 1 }: Props) {
         )}
       </div>
 
-      {/* Footer with legal text */}
+      {/* Footer with legal text — hidden when keyboard is open to keep everything visible */}
       {legalText && (
-        <footer className="px-4 pb-3 mt-auto">
+        <footer
+          className={`px-4 pb-3 mt-auto transition-all duration-300 ease-out overflow-hidden ${
+            showKeyboard ? 'max-h-0 opacity-0 pb-0' : 'max-h-32 opacity-100'
+          }`}
+        >
           <p className="text-[6px] text-center text-white/40 leading-relaxed max-w-4xl mx-auto">
             {legalText}
           </p>

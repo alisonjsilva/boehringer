@@ -38,7 +38,10 @@ const Kard: React.FC<Props> = ({ card, handleFlip, isNewlyMatched, animationDela
             src={card.defaultImage}
             alt='Card back'
             fill={true}
-            style={{ objectFit: "cover" }}
+            sizes='(max-width: 768px) 25vw, (max-width: 1280px) 18vw, 300px'
+            quality={100}
+            unoptimized
+            style={{ objectFit: "cover", imageRendering: "auto" }}
             priority={true}
           />
         </div>
@@ -49,7 +52,10 @@ const Kard: React.FC<Props> = ({ card, handleFlip, isNewlyMatched, animationDela
             src={card.image as string}
             alt='Card front'
             fill={true}
-            style={{ objectFit: "cover" }}
+            sizes='(max-width: 768px) 25vw, (max-width: 1280px) 18vw, 300px'
+            quality={100}
+            unoptimized
+            style={{ objectFit: "cover", imageRendering: "auto" }}
           />
         </div>
       </div>
