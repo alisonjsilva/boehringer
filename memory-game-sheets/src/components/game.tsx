@@ -49,7 +49,15 @@ export default function Game({ users, day = 1 }: Props) {
   }, [day])
 
   function handleShowForm() {
-    setShowForm(!showForm)
+    setShowForm(true)
+    setShowKeyboard(true)
+  }
+
+  function handleBackToRanking() {
+    setShowForm(false)
+    setShowKeyboard(false)
+    setNickname('')
+    setName('')
   }
 
   async function handleStartGame(e: React.FormEvent) {
@@ -168,7 +176,7 @@ export default function Game({ users, day = 1 }: Props) {
                 <div className='overflow-hidden'>
                   <button
                     className='w-full block px-6 py-3 mx-auto text-white uppercase bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 hover:bg-white/20 transition-all duration-300'
-                    onClick={handleShowForm}
+                    onClick={handleBackToRanking}
                   >
                     ← Back to Ranking
                   </button>

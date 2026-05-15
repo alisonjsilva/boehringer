@@ -1,6 +1,5 @@
 'use client'
 import React from 'react'
-import Image from 'next/image'
 
 type Props = {
   card: IKard
@@ -34,28 +33,23 @@ const Kard: React.FC<Props> = ({ card, handleFlip, isNewlyMatched, animationDela
       `}>
         {/* Back of card (REVERSO) */}
         <div className='absolute inset-0 [backface-visibility:hidden] rounded-xl overflow-hidden shadow-md'>
-          <Image
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
             src={card.defaultImage}
             alt='Card back'
-            fill={true}
-            sizes='(max-width: 768px) 25vw, (max-width: 1280px) 18vw, 300px'
-            quality={100}
-            unoptimized
-            style={{ objectFit: "cover", imageRendering: "auto" }}
-            priority={true}
+            className='absolute inset-0 w-full h-full object-contain'
+            draggable={false}
           />
         </div>
 
         {/* Front of card (image) */}
         <div className='absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)] rounded-xl overflow-hidden shadow-md'>
-          <Image
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
             src={card.image as string}
             alt='Card front'
-            fill={true}
-            sizes='(max-width: 768px) 25vw, (max-width: 1280px) 18vw, 300px'
-            quality={100}
-            unoptimized
-            style={{ objectFit: "cover", imageRendering: "auto" }}
+            className='absolute inset-0 w-full h-full object-contain'
+            draggable={false}
           />
         </div>
       </div>

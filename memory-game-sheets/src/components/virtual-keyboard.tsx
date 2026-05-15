@@ -22,7 +22,7 @@ const keyBase =
 
 const VirtualKeyboard: React.FC<Props> = ({ onKeyPress, onBackspace, onEnter, onClose, visible }) => {
   const press = useCallback(
-    (fn: () => void) => (e: React.MouseEvent | React.TouchEvent) => {
+    (fn: () => void) => (e: React.PointerEvent) => {
       e.preventDefault()
       e.stopPropagation()
       fn()
@@ -37,16 +37,14 @@ const VirtualKeyboard: React.FC<Props> = ({ onKeyPress, onBackspace, onEnter, on
           ? 'opacity-100 translate-y-0 scale-100'
           : 'opacity-0 translate-y-4 scale-95 pointer-events-none'
       }`}
-      onMouseDown={(e) => e.preventDefault()}
-      onTouchStart={(e) => e.preventDefault()}
+      onPointerDown={(e) => e.preventDefault()}
       aria-hidden={!visible}
     >
       {/* Top bar with close button */}
       <div className="flex justify-end mb-2 flex-shrink-0">
         <button
           type="button"
-          onMouseDown={press(onClose)}
-          onTouchStart={press(onClose)}
+          onPointerDown={press(onClose)}
           className="flex items-center gap-1.5 text-white/60 hover:text-white text-xs uppercase tracking-wider px-3 py-1.5 rounded-lg hover:bg-white/10 transition-all touch-manipulation"
           aria-label="Close keyboard"
           tabIndex={visible ? 0 : -1}
@@ -63,8 +61,7 @@ const VirtualKeyboard: React.FC<Props> = ({ onKeyPress, onBackspace, onEnter, on
             {rowIndex === 3 && (
               <button
                 type="button"
-                onMouseDown={press(onBackspace)}
-                onTouchStart={press(onBackspace)}
+                onPointerDown={press(onBackspace)}
                 className={`${keyBase} flex-[1.5] bg-white/15 text-2xl`}
                 aria-label="Backspace"
                 tabIndex={visible ? 0 : -1}
@@ -76,8 +73,7 @@ const VirtualKeyboard: React.FC<Props> = ({ onKeyPress, onBackspace, onEnter, on
               <button
                 key={key}
                 type="button"
-                onMouseDown={press(() => onKeyPress(key))}
-                onTouchStart={press(() => onKeyPress(key))}
+                onPointerDown={press(() => onKeyPress(key))}
                 className={keyBase}
                 tabIndex={visible ? 0 : -1}
               >
@@ -87,8 +83,7 @@ const VirtualKeyboard: React.FC<Props> = ({ onKeyPress, onBackspace, onEnter, on
             {rowIndex === 3 && (
               <button
                 type="button"
-                onMouseDown={press(onEnter)}
-                onTouchStart={press(onEnter)}
+                onPointerDown={press(onEnter)}
                 className={`${keyBase} flex-[1.5] bg-blue-600/80 border-blue-400/40 active:bg-blue-500 text-2xl`}
                 aria-label="Enter"
                 tabIndex={visible ? 0 : -1}
@@ -103,8 +98,7 @@ const VirtualKeyboard: React.FC<Props> = ({ onKeyPress, onBackspace, onEnter, on
         <div className="flex justify-center flex-1 min-h-0">
           <button
             type="button"
-            onMouseDown={press(() => onKeyPress(' '))}
-            onTouchStart={press(() => onKeyPress(' '))}
+            onPointerDown={press(() => onKeyPress(' '))}
             className={`${keyBase} max-w-[60%] text-sm uppercase tracking-widest text-white/70`}
             aria-label="Space"
             tabIndex={visible ? 0 : -1}
