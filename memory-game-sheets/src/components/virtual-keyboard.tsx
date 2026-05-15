@@ -32,7 +32,7 @@ const VirtualKeyboard: React.FC<Props> = ({ onKeyPress, onBackspace, onEnter, on
 
   return (
     <div
-      className={`w-full max-w-[900px] mx-auto h-full bg-white/5 backdrop-blur-md rounded-2xl border border-white/10 p-3 md:p-4 shadow-2xl flex flex-col transition-all duration-300 ease-out ${
+      className={`w-full max-w-[900px] mx-auto bg-white/5 backdrop-blur-md rounded-2xl border border-white/10 p-3 md:p-4 shadow-2xl flex flex-col transition-all duration-300 ease-out ${
         visible
           ? 'opacity-100 translate-y-0 scale-100'
           : 'opacity-0 translate-y-4 scale-95 pointer-events-none'
@@ -54,10 +54,9 @@ const VirtualKeyboard: React.FC<Props> = ({ onKeyPress, onBackspace, onEnter, on
         </button>
       </div>
 
-      {/* Rows fill remaining space */}
-      <div className="flex flex-col gap-1.5 md:gap-2 flex-1 min-h-0">
+      <div className="flex flex-col gap-1.5 md:gap-2">
         {KEYBOARD_ROWS.map((row, rowIndex) => (
-          <div key={rowIndex} className="flex gap-1.5 md:gap-2 w-full flex-1 min-h-0">
+          <div key={rowIndex} className="flex gap-1.5 md:gap-2 w-full h-11 md:h-12">
             {rowIndex === 3 && (
               <button
                 type="button"
@@ -95,7 +94,7 @@ const VirtualKeyboard: React.FC<Props> = ({ onKeyPress, onBackspace, onEnter, on
         ))}
 
         {/* Space bar */}
-        <div className="flex justify-center flex-1 min-h-0">
+        <div className="flex justify-center h-11 md:h-12">
           <button
             type="button"
             onPointerDown={press(() => onKeyPress(' '))}

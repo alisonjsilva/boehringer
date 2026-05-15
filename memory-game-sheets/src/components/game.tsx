@@ -184,10 +184,10 @@ export default function Game({ users, day = 1 }: Props) {
               </div>
             </div>
 
-            {/* Virtual Keyboard area — fills remaining viewport */}
+            {/* Virtual Keyboard area */}
             <div
               className={`w-full px-2 md:px-4 transition-all duration-300 ease-out ${
-                showKeyboard ? 'flex-1 min-h-0 opacity-100' : 'h-0 opacity-0 pointer-events-none overflow-hidden'
+                showKeyboard ? 'mt-auto opacity-100' : 'h-0 opacity-0 pointer-events-none overflow-hidden'
               }`}
             >
               <VirtualKeyboard
